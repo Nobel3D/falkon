@@ -305,16 +305,15 @@ MainApplication::MainApplication(int &argc, char** argv)
             m_restoreManager = new RestoreManager(sessionManager()->askSessionFromUser());
     }
 
-	loadSettings();
+    loadSettings();
 
-	m_plugins = new PluginProxy(this);
-	m_autoFill = new AutoFill(this);
+    m_plugins = new PluginProxy(this);
+    m_autoFill = new AutoFill(this);
 
-	if (!noAddons)
-		m_plugins->loadPlugins();
+    if (!noAddons)
+        m_plugins->loadPlugins();
 
-	BrowserWindow* window = createWindow(Qz::BW_FirstAppWindow, startUrl);
-
+    BrowserWindow* window = createWindow(Qz::BW_FirstAppWindow, startUrl);
     connect(window, SIGNAL(startingCompleted()), this, SLOT(restoreOverrideCursor()));
 
     connect(this, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT(onFocusChanged()));
@@ -422,7 +421,6 @@ BrowserWindow* MainApplication::createWindow(Qz::BrowserWindowType type, const Q
     connect(window, SIGNAL(destroyed(QObject*)), this, SLOT(windowDestroyed(QObject*)));
 
     m_windows.prepend(window);
-	emit windowCreated(window);
     return window;
 }
 

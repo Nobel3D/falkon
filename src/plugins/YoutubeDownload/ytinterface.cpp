@@ -46,7 +46,7 @@ void YtInterface::init(InitState state, const QString &settingsPath)
 	m_download = new YtIcon();
 	m_download->setIcon(QIcon(QL1S(":ytdownload/data/icon.svg")));
 	connect(m_download, SIGNAL(clicked(ClickController*)), this, SLOT(actionSlot()));
-	connect(mApp, SIGNAL(windowCreated(BrowserWindow*)), this, SLOT(windowCreated(BrowserWindow*)));
+	connect(mApp->plugins(), SIGNAL(mainWindowCreated(BrowserWindow*)), this, SLOT(windowCreated(BrowserWindow*)));
 
 	m_settingsPath = settingsPath + QL1S("/ytdownload/ytdownload.ini");
 	loadSettings();
